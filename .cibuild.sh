@@ -32,7 +32,6 @@ then
   # testfile has changed
   git add testfile
   git commit -m 'testfile has changed, automated commit from jenkins'
-  git push origin $BRANCH
 fi
 
 echo "foo" >> $WORKSPACE/testfile
@@ -43,7 +42,6 @@ then
   # testfile has changed
   git add testfile
   git commit -m 'testfile has changed, automated commit from jenkins'
-  git push origin $BRANCH
 fi
 
 git status
