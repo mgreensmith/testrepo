@@ -1,4 +1,4 @@
 source 'http://rubygems.org'
 source 'http://gems.int.cozy.co'
 
-gem 'cozy-users_service', '= 0.5.0.30'
+gem 'cozy-users_service', '= 0.5.1.31'
