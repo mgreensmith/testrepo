@@ -27,7 +27,7 @@ set -x
 git branch
 git status
 
-if ! git diff-files --quit $WORKSPACE/testfile
+if ! git diff --quiet $WORKSPACE/testfile
 then
   # testfile has changed
   git add testfile
@@ -38,7 +38,7 @@ fi
 echo "foo" >> $WORKSPACE/testfile
 git status
 
-if ! git diff-files --quit $WORKSPACE/testfile
+if ! git diff --quiet $WORKSPACE/testfile
 then
   # testfile has changed
   git add testfile
