@@ -24,18 +24,38 @@
 set -e
 set -x
 
-bundle check || bundle install
-bundle install --gemfile $WORKSPACE/Gemfile --deployment --without development test
-bundle clean
+git branch
+git status
 
-echo $CANONICAL_VERSION > $WORKSPACE/version
+if ! git diff-files --quit $WORKSPACE/testfile
+  # testfile has changed
+  git add testfile
+  git commit -m 'testfile has changed, automated commit from jenkins'
+  git push origin $BRANCH
+fi
 
-rm -rfv $WORKSPACE/build_output
-mkdir -pv $WORKSPACE/build_output
-tar  -C $WORKSPACE \
-    --exclude='./pkg' \
-    --exclude='./build_output' \
-    --exclude='./.git' \
-    --exclude='./.cibuild.sh' \
-    --exclude='./config/config.yml' \
-    -zcf $WORKSPACE/build_output/build-${BUILD_NUMBER}.tgz .
+echo "foo" >> $WORKSPACE/testfile
+git status
+
+if ! git diff-files --quit $WORKSPACE/testfile
+  # testfile has changed
+  git add testfile
+  git commit -m 'testfile has changed, automated commit from jenkins'
+  git push origin $BRANCH
+fi
+
+#bundle check || bundle install
+#bundle install --gemfile $WORKSPACE/Gemfile --deployment --without development test
+#bundle clean
+
+#echo $CANONICAL_VERSION > $WORKSPACE/version
+
+#rm -rfv $WORKSPACE/build_output
+#mkdir -pv $WORKSPACE/build_output
+#tar  -C $WORKSPACE \
+#    --exclude='./pkg' \
+#    --exclude='./build_output' \
+#    --exclude='./.git' \
+#    --exclude='./.cibuild.sh' \
+#    --exclude='./config/config.yml' \
+#    -zcf $WORKSPACE/build_output/build-${BUILD_NUMBER}.tgz .
