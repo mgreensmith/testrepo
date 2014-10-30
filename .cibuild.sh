@@ -28,6 +28,7 @@ git branch
 git status
 
 if ! git diff-files --quit $WORKSPACE/testfile
+then
   # testfile has changed
   git add testfile
   git commit -m 'testfile has changed, automated commit from jenkins'
@@ -38,11 +39,14 @@ echo "foo" >> $WORKSPACE/testfile
 git status
 
 if ! git diff-files --quit $WORKSPACE/testfile
+then
   # testfile has changed
   git add testfile
   git commit -m 'testfile has changed, automated commit from jenkins'
   git push origin $BRANCH
 fi
+
+git status
 
 #bundle check || bundle install
 #bundle install --gemfile $WORKSPACE/Gemfile --deployment --without development test
