@@ -22,29 +22,19 @@
 # after you echo the $CANONICAL_VERSION to the `version` file.
 
 set -e
-set -x
+#set -x
 
-git branch
-git status
+bundle check || bundle install
+bundle update
 
-if ! git diff --quiet $WORKSPACE/testfile
+if ! git diff --quiet $WORKSPACE/Gemfile.lock
 then
   # testfile has changed
   git add testfile
-  git commit -m 'testfile has changed, automated commit from jenkins'
+  git commit -m '[jenkins] bundle update and commit Gemfile.lock'
 fi
 
-echo "foo" >> $WORKSPACE/testfile
-git status
-
-if ! git diff --quiet $WORKSPACE/testfile
-then
-  # testfile has changed
-  git add testfile
-  git commit -m 'testfile has changed, automated commit from jenkins'
-fi
-
-git status
+#git status
 
 #bundle check || bundle install
 #bundle install --gemfile $WORKSPACE/Gemfile --deployment --without development test
