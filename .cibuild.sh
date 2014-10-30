@@ -40,10 +40,12 @@ fi
 #bundle install --gemfile $WORKSPACE/Gemfile --deployment --without development test
 #bundle clean
 
-#echo $CANONICAL_VERSION > $WORKSPACE/version
+echo $CANONICAL_VERSION > $WORKSPACE/version
 
-#rm -rfv $WORKSPACE/build_output
-#mkdir -pv $WORKSPACE/build_output
+rm -rfv $WORKSPACE/build_output
+mkdir -pv $WORKSPACE/build_output
+echo "foo" > $WORKSPACE/build_output/build-${BUILD_NUMBER}.tgz
+
 #tar  -C $WORKSPACE \
 #    --exclude='./pkg' \
 #    --exclude='./build_output' \
