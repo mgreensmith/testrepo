@@ -30,7 +30,7 @@ bundle update
 if ! git diff --quiet $WORKSPACE/Gemfile.lock
 then
   # testfile has changed
-  git add testfile
+  git add Gemfile.lock
   git commit -m '[jenkins] bundle update and commit Gemfile.lock'
 fi
 
